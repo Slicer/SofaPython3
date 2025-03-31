@@ -202,7 +202,7 @@ SP3_add_python_package(
 sofa_create_package(
     PACKAGE_NAME ${PROJECT_NAME}
     PACKAGE_VERSION ${PROJECT_VERSION}
-    RELOCATABLE "plugins"
+    RELOCATABLE ${SOFA_PLUGINS_RELOCATABLE_INSTALL_DIR}
     )
 
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/CMake/SofaPython3Tools.cmake" "${CMAKE_BINARY_DIR}/lib/cmake/SofaPython3Tools.cmake" COPYONLY)
@@ -216,7 +216,7 @@ if (SP3_LINK_TO_USER_SITE AND SP3_PYTHON_PACKAGES_LINK_DIRECTORY)
     set(SP3_SITE_PACKAGES_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib/${SP3_PYTHON_PACKAGES_DIRECTORY}")
 
     file(GLOB directories RELATIVE "${SP3_SITE_PACKAGES_OUTPUT_DIRECTORY}" "${SP3_SITE_PACKAGES_OUTPUT_DIRECTORY}/*")
-    
+
     # Create the site-package link directory if it doesn't exists yet
     install(DIRECTORY DESTINATION ${SP3_PYTHON_PACKAGES_LINK_DIRECTORY})
     foreach(directory ${directories})
